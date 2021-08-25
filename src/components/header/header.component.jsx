@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {connect} from 'react-redux'
+
 import { Link } from 'react-router-dom';
 
 import { ReactComponent as  Logo } from '../../assets/4.3 crown.svg'
@@ -34,4 +36,9 @@ const Header = ({currentUser}) => (
     </div>
 );
 
-export default Header;
+
+const mapStateToProps = (state) =>({                         //this naming can be anything but mapStateToProps is standard with redux codebase
+    currentUser: state.user.currentUser
+})
+
+export default connect(mapStateToProps)(Header);
