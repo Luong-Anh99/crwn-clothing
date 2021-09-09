@@ -18,13 +18,11 @@ import {selectCurrentUser} from './redux/user/user.selectors';
 
 class App extends React.Component {
   unsubscribeFromAuth = null;
-
   componentDidMount() {
     const { setCurrentUser } = this.props;
-
     this.unsubscribeFromAuth = auth.onAuthStateChanged(async userAuth => {
       if (userAuth) {
-        const userRef = await createUserProfileDocument(userAuth); //store user in firebase
+        const userRef = await createUserProfileDocument(userAuth); //store user in firebase 
 
         userRef.onSnapshot(snapShot => { //store user on state in our app
           setCurrentUser({
@@ -33,7 +31,6 @@ class App extends React.Component {
           });
         });
       }
-
       setCurrentUser(userAuth);
     });
   }
